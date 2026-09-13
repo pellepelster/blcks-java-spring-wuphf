@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: visits
+      author: blcks
+      changes:
+        # One row per visit rather than a counter column: the count is what the table has,
+        # so two instances behind one database cannot overwrite each other's total.
+        - createTable:
+            tableName: visits
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: visited_at
+                  type: timestamptz
+                  constraints:
+                    nullable: false

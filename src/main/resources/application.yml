@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: java-spring-wuphf
+
+# Without a linked database there is nothing to connect to, so the jdbc and liquibase
+# auto-configuration is left out rather than pointed at an address that does not exist.
+---
+spring:
+  config:
+    activate:
+      on-profile: memory
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration
+
+# The variables a blcks link to a postgresql-standalone service named `database1` hands over,
+# for the database `hello-world` it holds. The names are the link's, not this application's:
+# BLCKS_<SERVICE>_… for the instance, BLCKS_<SERVICE>_<DATABASE>_… for one database in it.
+---
+spring:
+  config:
+    activate:
+      on-profile: database
+  datasource:
+    url: jdbc:postgresql://${BLCKS_DATABASE1_HOST}:${BLCKS_DATABASE1_PORT}/${BLCKS_DATABASE1_HELLO_WORLD_DATABASE}
+    username: ${BLCKS_DATABASE1_HELLO_WORLD_USER}
+    password: ${BLCKS_DATABASE1_HELLO_WORLD_PASSWORD}
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
