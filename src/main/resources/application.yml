@@ -26,8 +26,8 @@ spring:
     activate:
       on-profile: database
   datasource:
-    url: jdbc:postgresql://${BLCKS_DATABASE1_HOST}:${BLCKS_DATABASE1_PORT}/${BLCKS_DATABASE1_HELLO_WORLD_DATABASE}
-    username: ${BLCKS_DATABASE1_HELLO_WORLD_USER}
-    password: ${BLCKS_DATABASE1_HELLO_WORLD_PASSWORD}
+    url: jdbc:postgresql://${BLCKS_DATABASE1_HOST}:${BLCKS_DATABASE1_PORT}/${BLCKS_DATABASE1_WUPHF_DATABASE}
+    username: ${BLCKS_DATABASE1_WUPHF_USER}
+    password: ${BLCKS_DATABASE1_WUPHF_PASSWORD}
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yaml
