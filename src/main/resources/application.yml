@@ -18,7 +18,7 @@ spring:
       - org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration
 
 # The variables a blcks link to a postgresql-standalone service named `database1` hands over,
-# for the database `hello-world` it holds. The names are the link's, not this application's:
+# for the database `wuphf` it holds. The names are the link's, not this application's:
 # BLCKS_<SERVICE>_… for the instance, BLCKS_<SERVICE>_<DATABASE>_… for one database in it.
 ---
 spring:
