@@ -9,7 +9,7 @@ run = "./gradlew dist"
 description = "Run the unit tests"
 run = "./gradlew test"
 
-[tasks.integration-test]
+[tasks."test:integration"]
 description = "Run the integration tests, with and without postgres (needs docker)"
 run = "./gradlew integrationTest"
 
