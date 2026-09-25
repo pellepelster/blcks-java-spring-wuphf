@@ -1,0 +1,10 @@
+<table th:fragment="variables(variables)">
+  <thead><tr><th scope="col">Name</th><th scope="col">Value</th></tr></thead>
+  <tbody>
+    <tr th:each="variable : ${variables}" th:classappend="${variable.secret} ? 'masked'">
+      <td class="name" th:text="${variable.name}">PATH</td>
+      <td class="value" th:if="${variable.secret}"><span class="mask" title="the name says this is a secret" th:text="${variable.value}">********</span><span class="tag">hidden</span></td>
+      <td class="value" th:unless="${variable.secret}" th:text="${variable.value}">/usr/bin</td>
+    </tr>
+  </tbody>
+</table>

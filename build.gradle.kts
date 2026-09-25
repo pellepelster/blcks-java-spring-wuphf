@@ -1,7 +1,6 @@
 plugins {
-    java
-    // the standard gradle packaging plugin: `distZip` bundles the start scripts, the
-    // application jar and its runtime dependencies into one archive
+    kotlin("jvm") version "2.4.20"
+    kotlin("plugin.spring") version "2.4.20"
     application
     id("org.springframework.boot") version "3.5.6"
     id("io.spring.dependency-management") version "1.1.7"
@@ -20,37 +19,69 @@ repositories {
     mavenCentral()
 }
 
+extra["kotlin.version"] = "2.4.20"
+
+extra["testcontainers.version"] = "1.21.4"
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
-    // the visit log lives in postgres when the service is linked to one; liquibase creates
-    // the table it is kept in, so the application owns its schema rather than assuming one
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("org.liquibase:liquibase-core")
     runtimeOnly("org.postgresql:postgresql")
-    // the masking of secrets and the two representations of a visit are unit tested; the
-    // blcks integration tests that deploy this example need a machine and take minutes
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("io.kotest:kotest-assertions-core:6.2.5")
+    testImplementation("org.springframework.boot:spring-boot-testcontainers")
+    testImplementation("org.testcontainers:junit-jupiter")
+    testImplementation("org.testcontainers:postgresql")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.addAll("-Xjsr305=strict")
+    }
 }
 
 application {
-    mainClass = "de.solidblocks.examples.javaspringwuphf.ExampleApplication"
+    mainClass = "de.solidblocks.examples.javaspringwuphf.ExampleApplicationKt"
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-// The deliverable is always `java-spring-wuphf.zip`, whatever the project is versioned.
+tasks.named<Test>("test") {
+    useJUnitPlatform {
+        excludeTags("integration")
+    }
+}
+
+val integrationTest by tasks.registering(Test::class) {
+    group = "verification"
+    description = "Runs the integration tests, with and without a postgres database."
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
+    useJUnitPlatform {
+        includeTags("integration")
+    }
+    shouldRunAfter(tasks.named("test"))
+}
+
+tasks.named("check") {
+    dependsOn(integrationTest)
+}
+
 tasks.named<Zip>("distZip") {
     archiveFileName = "java-spring-wuphf.zip"
 }
 
-// Same idea for the standalone jar: always `java-spring-wuphf.jar`.
 tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
     archiveFileName = "java-spring-wuphf.jar"
 }
 
-// `dist` is the one task to remember; `build` still produces the same archive.
 tasks.register("dist") {
     group = "distribution"
     description = "Builds the distribution archive at build/distributions/java-spring-wuphf.zip."

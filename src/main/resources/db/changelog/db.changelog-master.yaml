@@ -3,8 +3,6 @@ databaseChangeLog:
       id: visits
       author: blcks
       changes:
-        # One row per visit rather than a counter column: the count is what the table has,
-        # so two instances behind one database cannot overwrite each other's total.
         - createTable:
             tableName: visits
             columns:

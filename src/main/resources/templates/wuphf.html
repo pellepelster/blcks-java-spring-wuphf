@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WUPHF.com</title>
+    <link rel="icon" href="data:," />
+    <style>
+      :root {
+        --ink: #12183a;
+        --orange: #ff6a13;
+        --yellow: #ffc300;
+        --pink: #ff2e88;
+        --blue: #1d6fb8;
+        --cream: #fff7ec;
+        --grey: #6b7280;
+        --sans: "Trebuchet MS", "Gill Sans", "Segoe UI", system-ui, Arial, sans-serif;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 32px 20px 64px;
+        background: var(--cream);
+        background-image: repeating-linear-gradient(135deg,
+          rgba(255, 195, 0, 0.16) 0 18px, transparent 18px 36px);
+        color: var(--ink);
+        font-family: var(--sans);
+        line-height: 1.5;
+      }
+      .wrap { max-width: 960px; margin: 0 auto; }
+      .card {
+        background: #fff;
+        border: 3px solid var(--ink);
+        border-radius: 14px;
+        box-shadow: 6px 6px 0 var(--ink);
+        padding: 24px;
+        margin: 0 0 28px;
+      }
+      .masthead { text-align: center; margin: 0 0 32px; }
+      .logo { display: inline-flex; align-items: center; gap: 12px; transform: rotate(-2deg); }
+      .paw { width: 54px; height: 54px; fill: var(--orange); }
+      .wordmark {
+        font-size: clamp(38px, 8vw, 64px);
+        font-weight: 800;
+        text-transform: uppercase;
+        text-shadow: 3px 3px 0 var(--yellow);
+      }
+      .bang { color: var(--pink); }
+      .tagline { font-size: 18px; font-weight: 700; margin: 14px 0 4px; }
+      .strapline { color: var(--grey); margin: 0; }
+      h2 {
+        margin: 0 0 16px;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-bottom: 4px solid var(--yellow);
+        padding-bottom: 8px;
+      }
+      h3 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em; margin: 22px 0 6px; }
+      .hero { text-align: center; }
+      .eyebrow {
+        margin: 0;
+        color: var(--orange);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+      }
+      .count {
+        margin: 4px 0 10px;
+        font-size: clamp(64px, 14vw, 132px);
+        line-height: 1;
+        font-weight: 800;
+        color: var(--pink);
+        text-shadow: 4px 4px 0 var(--ink);
+      }
+      .lede { margin: 0; }
+      .badge {
+        display: inline-block;
+        padding: 6px 14px;
+        border: 3px solid var(--ink);
+        border-radius: 999px;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .badge-memory { background: var(--orange); }
+      .badge-database { background: var(--blue); }
+      .chips { margin: 14px 0 0; }
+      .chip {
+        display: inline-block;
+        margin: 0 8px 8px 0;
+        padding: 4px 10px;
+        border: 2px solid var(--ink);
+        border-radius: 6px;
+        background: var(--cream);
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .chip-no { background: #fff; color: var(--grey); border-color: var(--grey); }
+      .details { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; margin: 18px 0 0; }
+      .details dt {
+        color: var(--grey);
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .details dd { margin: 0; font-family: var(--mono); font-size: 13px; word-break: break-all; }
+      table { width: 100%; border-collapse: collapse; font-size: 13px; }
+      th {
+        padding: 6px 8px;
+        border-bottom: 2px solid var(--ink);
+        color: var(--grey);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-align: left;
+        text-transform: uppercase;
+      }
+      td { padding: 6px 8px; border-bottom: 1px solid #e7e2d8; vertical-align: top; }
+      tbody tr:nth-child(even) td { background: #faf7f1; }
+      .name { font-family: var(--mono); font-weight: 700; word-break: break-all; }
+      .value { font-family: var(--mono); word-break: break-all; }
+      .link-group { border-left: 6px solid var(--yellow); padding-left: 14px; }
+      .note { margin: 0 0 10px; color: var(--grey); font-size: 13px; }
+      .masked td { background: #f4f4f5; }
+      .mask { color: var(--grey); }
+      .tag {
+        margin-left: 8px;
+        padding: 1px 6px;
+        border-radius: 4px;
+        background: var(--grey);
+        color: #fff;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .pill { margin-left: 6px; padding: 1px 9px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 12px; }
+      summary { padding: 8px 0; cursor: pointer; font-size: 13px; font-weight: 800; text-transform: uppercase; }
+      footer { color: var(--grey); font-size: 13px; text-align: center; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="masthead">
+        <div class="logo">
+          <svg class="paw" viewBox="0 0 64 64" role="img" aria-label="A paw">
+            <ellipse cx="32" cy="44" rx="17" ry="13" />
+            <circle cx="13" cy="27" r="7" />
+            <circle cx="25" cy="16" r="7.5" />
+            <circle cx="39" cy="16" r="7.5" />
+            <circle cx="51" cy="27" r="7" />
+          </svg>
+          <span class="wordmark">Wuphf<span class="bang">!</span>com</span>
+        </div>
+        <p class="tagline">It&rsquo;s the sound a dog makes when he&rsquo;s excited.</p>
+        <p class="strapline">
+          One message. Email, text, twitter, facebook, and the fax machine. All at once.
+        </p>
+      </header>
+      <section class="card hero">
+        <p class="eyebrow">Wuphfs sent</p>
+        <p class="count" th:text="${report.visited}">3</p>
+        <p class="lede">This service has been visited <strong th:text="${report.visited}">3</strong> time(s).</p>
+      </section>
+      <section class="card" th:with="storage=${report.storage}">
+        <h2>Where the wuphfs sleep</h2>
+        <p><span class="badge" th:classappend="'badge-' + ${storage.kind}" th:text="${storage.name}">In memory</span></p>
+        <p class="lede" th:text="${storage.description}">No database is linked, thus the count stays in this process.</p>
+        <p class="chips"><span class="chip" th:classappend="${storage.persistent} ? 'chip-yes' : 'chip-no'" th:text="${storage.persistent} ? 'Survives a restart' : 'Gone on restart'">Gone on restart</span><span class="chip" th:classappend="${storage.shared} ? 'chip-yes' : 'chip-no'" th:text="${storage.shared} ? 'Shared by every instance' : 'This process only'">This process only</span></p>
+        <dl class="details" th:unless="${storage.details.isEmpty()}">
+          <th:block th:each="detail : ${storage.details}"><dt th:text="${detail.key}">host</dt><dd th:text="${detail.value}">10.0.0.42</dd></th:block>
+        </dl>
+      </section>
+      <section class="card" th:with="environment=${report.environment}">
+        <h2>What the process was handed</h2>
+        <div class="link-group">
+          <h3>Link variables<span class="pill" th:text="${environment.link.size()}">0</span></h3>
+          <p class="note" th:if="${environment.link.isEmpty()}">No link variables. This one is a lone dog.</p>
+          <th:block th:unless="${environment.link.isEmpty()}">
+            <p class="note">A blcks link put these here.</p>
+            <table th:replace="~{wuphf-variables :: variables(${environment.link})}"></table>
+          </th:block>
+        </div>
+        <details>
+          <summary>And <th:block th:text="${environment.other.size()}">0</th:block> more from the process</summary>
+          <table th:replace="~{wuphf-variables :: variables(${environment.other})}"></table>
+        </details>
+      </section>
+      <footer>WUPHF.com &mdash; a demo service for blcks. No dogs were disturbed.</footer>
+    </div>
+  </body>
+</html>

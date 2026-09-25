@@ -3,10 +3,8 @@ server:
 
 spring:
   application:
-    name: java-spring-wuphf
+    name: blcks-java-spring-wuphf
 
-# Without a linked database there is nothing to connect to, so the jdbc and liquibase
-# auto-configuration is left out rather than pointed at an address that does not exist.
 ---
 spring:
   config:
@@ -17,9 +15,6 @@ spring:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
       - org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration
 
-# The variables a blcks link to a postgresql-standalone service named `database1` hands over,
-# for the database `wuphf` it holds. The names are the link's, not this application's:
-# BLCKS_<SERVICE>_… for the instance, BLCKS_<SERVICE>_<DATABASE>_… for one database in it.
 ---
 spring:
   config:
