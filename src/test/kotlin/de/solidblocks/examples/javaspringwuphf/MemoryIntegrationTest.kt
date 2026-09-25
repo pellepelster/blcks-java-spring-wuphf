@@ -9,7 +9,6 @@ import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldStartWith
 import io.kotest.matchers.types.shouldBeInstanceOf
 import javax.sql.DataSource
-import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -22,7 +21,6 @@ import org.springframework.http.HttpMethod
 import org.springframework.http.MediaType
 import org.springframework.test.context.ActiveProfiles
 
-@Tag("integration")
 @ActiveProfiles(ExampleApplication.MEMORY_PROFILE)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class MemoryIntegrationTest(

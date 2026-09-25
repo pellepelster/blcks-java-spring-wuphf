@@ -2,17 +2,9 @@
 java = "temurin-21"
 
 [tasks.build]
-description = "Build the distribution archive"
+description = "Build the executable jar and the distribution zip"
 run = "./gradlew dist"
 
 [tasks.test]
-description = "Run the unit tests"
+description = "Run all tests, the ones against postgres need docker"
 run = "./gradlew test"
-
-[tasks."test:integration"]
-description = "Run the integration tests, with and without postgres (needs docker)"
-run = "./gradlew integrationTest"
-
-[tasks.check]
-description = "Run all tests"
-run = "./gradlew check"

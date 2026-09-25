@@ -53,37 +53,16 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-tasks.named<Test>("test") {
-    useJUnitPlatform {
-        excludeTags("integration")
-    }
-}
-
-val integrationTest by tasks.registering(Test::class) {
-    group = "verification"
-    description = "Runs the integration tests, with and without a postgres database."
-    testClassesDirs = sourceSets["test"].output.classesDirs
-    classpath = sourceSets["test"].runtimeClasspath
-    useJUnitPlatform {
-        includeTags("integration")
-    }
-    shouldRunAfter(tasks.named("test"))
-}
-
-tasks.named("check") {
-    dependsOn(integrationTest)
-}
-
 tasks.named<Zip>("distZip") {
-    archiveFileName = "java-spring-wuphf.zip"
+    archiveFileName = "blcks-java-spring-wuphf.zip"
 }
 
 tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
-    archiveFileName = "java-spring-wuphf.jar"
+    archiveFileName = "blcks-java-spring-wuphf.jar"
 }
 
 tasks.register("dist") {
     group = "distribution"
-    description = "Builds the distribution archive at build/distributions/java-spring-wuphf.zip."
-    dependsOn(tasks.named("distZip"))
+    description = "Builds the executable jar at build/libs/blcks-java-spring-wuphf.jar and the distribution archive at build/distributions/blcks-java-spring-wuphf.zip."
+    dependsOn(tasks.named("bootJar"), tasks.named("distZip"))
 }
